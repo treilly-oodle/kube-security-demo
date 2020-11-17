@@ -1,0 +1,25 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exercise1
+spec:
+  selector:
+    matchLabels:
+      app: exercise1
+  template:
+    metadata:
+      labels:
+        app: exercise1
+    spec:
+      containers:
+      - name: exercise1
+        image: ubuntu:xenial
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        command: ["sleep", "30000"]
+        securityContext:
+          privileged: true
+
