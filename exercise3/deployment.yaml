@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exercise3
+spec:
+  selector:
+    matchLabels:
+      app: exercise3
+  template:
+    metadata:
+      labels:
+        app: exercise3
+    spec:
+      containers:
+      - name: exercise3
+        image: ubuntu:xenial
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        command: ["sleep", "30000"]
+        volumeMounts:
+            - name: dockersock
+              mountPath: "/var/run/docker.sock"
+      volumes:
+        - name: dockersock
+          hostPath:
+            path: /var/run/docker.sock
